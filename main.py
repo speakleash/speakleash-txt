@@ -39,8 +39,12 @@ for f in txt_datasets:
 
     ar = Archive('./data')
 
-    file_name_zst = './lo.zst'
-    file_name_manifest = './1000_novels_corpus_CLARIN-PL.manifest'
+    data = None
+    with open(f, 'r') as jf:
+        data = json.load(jf)
+
+    file_name_zst = './' + data.get("name","") + '.zst'
+    file_name_manifest = './' + data.get("name","") + '.manifest'
 
     total_len = 0
     total_docs = 0
@@ -50,10 +54,6 @@ for f in txt_datasets:
     total_nouns = 0
     total_punctuations = 0
     total_symbols = 0
-
-    data = None
-    with open(f, 'r') as jf:
-        data = json.load(jf)
 
     if data:
     
